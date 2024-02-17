@@ -9,3 +9,23 @@ body, html {
     display: block;
     margin: 0 auto;
 }
+
+#gameCanvas {
+    max-width: 100%;
+    height: auto;
+}
+
+#controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  }
+  
+  #controls button {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
