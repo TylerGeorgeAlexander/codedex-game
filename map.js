@@ -22,7 +22,7 @@ class Map {
 }
 
 // Initialize the map with your actual map image path
-const gameMap = new Map('./map/background.png', 1024, 1024); // Assuming a large map size of 2000x2000 pixels
+const gameMap = new Map('map/background.png', 1024, 1024); // Assuming a large map size of 2000x2000 pixels
 
 // Define the viewport (the visible portion of the map)
 const viewport = {
