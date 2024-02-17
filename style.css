@@ -15,17 +15,79 @@ body, html {
     height: auto;
 }
 
-#controls {
+#game-controls {
     position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
+    justify-content: space-between;
+    width: 500px; /* Adjust based on your design */
+}
+
+#d-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 60px); /* 3 columns */
+    grid-template-rows: repeat(3, 60px); /* 3 rows */
     gap: 10px;
-  }
-  
-  #controls button {
-    padding: 10px;
-    font-size: 16px;
-  }
-  
+    justify-content: center;
+    align-items: center;
+}
+
+#d-pad #left,
+#d-pad #right,
+#d-pad #up,
+#d-pad #down {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Makes buttons circular */
+    font-size: 16px; /* Adjust as needed */
+}
+
+#d-pad #up {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#d-pad #left {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#d-pad #right {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#d-pad #down {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+#action-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#action-buttons .btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Makes buttons circular */
+    font-size: 16px; /* Adjust as needed */
+    margin-top: 10px;
+}
+
+.btn {
+    background-color: #f00; /* Red, adjust as needed */
+    color: #fff; /* White text color */
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn:active {
+    background-color: #b00; /* Darker shade of red when pressed */
+}

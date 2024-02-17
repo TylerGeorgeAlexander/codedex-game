@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Pokémon-style 2D Game</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-</head>
-<body>
-    <div id="controls">
-        <button id="left">Left</button>
-        <button id="right">Right</button>
-        <button id="up">Up</button>
-        <button id="down">Down</button>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+  </head>
+  <body>
+    <div id="game-controls">
+      <div id="d-pad">
+        <button id="up" class="btn">Up</button>
+        <button id="left" class="btn">Left</button>
+        <button id="right" class="btn">Right</button>
+        <button id="down" class="btn">Down</button>
+      </div>
+      <div id="action-buttons">
+        <button id="action-a" class="btn">A</button>
+        <button id="action-b" class="btn">B</button>
+      </div>
     </div>
+
     <canvas id="gameCanvas"></canvas>
     <script src="map.js"></script>
-    <script src="game.js"></script>   
-</body>
+    <script src="game.js"></script>
+  </body>
 </html>
