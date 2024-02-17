@@ -55,7 +55,8 @@ function drawCharacter() {
     ctx.fillStyle = "red"; // Example character color
     let viewportX = playerX - viewport.x;
     let viewportY = playerY - viewport.y;
-    ctx.fillRect(viewportX, viewportY, 25, 25); // Example character size
+    let charSquare = 25.6; // Main character size
+    ctx.fillRect(viewportX, viewportY, charSquare, charSquare); // Example character size
 }
 
 function gameLoop() {
@@ -65,6 +66,20 @@ function gameLoop() {
     gameMap.draw(ctx, viewport); // Draw the map
     drawCharacter(); // Draw the player
 }
+
+function resizeCanvas() {
+    const canvas = document.getElementById('gameCanvas');
+    // Example: maintain a 4:3 aspect ratio
+    const width = Math.min(window.innerWidth, 640); // Maximum canvas width
+    const height = Math.min(window.innerHeight, 480); // Calculate height based on aspect ratio
+    canvas.width = width;
+    canvas.height = height;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas(); // Initial resize to fit the viewport
 
 // Start the game loop
 gameLoop();

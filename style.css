@@ -3,19 +3,32 @@ body, html {
     padding: 0;
     overflow: hidden;
     height: 100%;
-    background-color: #000; /* Background color */
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Firefox */
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* This centers the child vertically */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#canvas-container {
+    width: 100vw; /* Adjust based on your game's design */
+    height: 100vh; /* Adjust to maintain aspect ratio */
+    max-width: 640px; /* Example max size */
+    max-height: 480px; /* Example max size, adjust as needed */
+    display: flex; /* Enables flexbox for this container */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }
 
 #gameCanvas {
     background-color: #000;
-    display: block;
-    margin: 0 auto;
-    width: 100vw;
+    width: 100%; /* Fill the container */
+    height: 100%; /* Maintain aspect ratio */
 }
+
 
 #game-controls {
     position: fixed;
