@@ -79,9 +79,25 @@ body, html {
     gap: 25vw;
 }
 
-.btn:active {
-    background-color: #b00;
+/* Disabling text selection for all buttons */
+.btn {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Firefox */
+    background-color: #f00; /* Red, adjust as needed */
+    color: #fff; /* White text color */
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.btn:active {
+    background-color: #b00; /* Darker shade of red when pressed */
+}
+
 
 @media (orientation: landscape) {
     #game-controls {
