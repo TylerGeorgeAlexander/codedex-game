@@ -28,39 +28,34 @@ class Map {
 }
 
 // Initialize the map with your actual map image path
-const gameMap = new Map("map/background.png", 2048, 2048); // Assuming a large map size of 2000x2000 pixels
+const gameMap = new Map("map/background.png", 2048, 2048); // Assuming a large map size
 
-// Define the viewport (the visible portion of the map)
-// Keeping the height the same, calculate the new width for a 16:9 aspect ratio
-const viewportHeight = 360;
-const viewportWidth = Math.round((16 / 9) * viewportHeight); // Calculate width based on 16:9 aspect ratio
-
-const viewport = {
-  x: 0,
-  y: 2048, // This may need to be adjusted depending on how you're using the y-coordinate
-  width: viewportWidth,
-  height: viewportHeight,
-};
-
-function updateViewport(playerX, playerY) {
-  // Determine the viewport size based on window dimensions while maintaining aspect ratio or other design considerations
-  const aspectRatio = 16 / 9; // Example: Maintain a 16:9 aspect ratio
+// Define the viewport (the visible portion of the map) dynamically based on window size
+function calculateViewport() {
+  const aspectRatio = 16 / 9; // Maintain a 16:9 aspect ratio
   let viewportWidth = window.innerWidth;
   let viewportHeight = window.innerHeight;
 
-  // Optional: Adjust viewport size to maintain a specific aspect ratio or other constraints
+  // Adjust viewport size to maintain a specific aspect ratio
   if (viewportWidth / viewportHeight > aspectRatio) {
-    // Window is too wide for the desired aspect ratio
     viewportWidth = viewportHeight * aspectRatio;
   } else {
-    // Window is too tall for the desired aspect ratio
     viewportHeight = viewportWidth / aspectRatio;
   }
 
-  // Update global viewport dimensions
-  viewport.width = viewportWidth;
-  viewport.height = viewportHeight;
+  return {
+    x: 0,
+    y: 0, // Initially set to 0, will be updated based on player position
+    width: viewportWidth,
+    height: viewportHeight,
+  };
+}
 
+let viewport = calculateViewport(); // Initialize viewport based on current window size
+
+function updateViewport(playerX, playerY) {
+  viewport = calculateViewport(); // Recalculate viewport dimensions based on current window size
+  
   // Center the player in the viewport if possible
   viewport.x = Math.min(
     Math.max(0, playerX - viewport.width / 2),
@@ -71,3 +66,8 @@ function updateViewport(playerX, playerY) {
     gameMap.height - viewport.height
   );
 }
+
+// Consider adding an event listener to handle window resize events
+window.addEventListener('resize', function() {
+  updateViewport(playerX, playerY); // Assuming playerX and playerY are accessible
+});

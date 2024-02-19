@@ -100,38 +100,38 @@ function gameLoop() {
 }
 
 function resizeCanvas() {
-    const canvas = document.getElementById('gameCanvas');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  const aspectRatio = 16 / 9;
+  let newWidth = window.innerWidth;
+  let newHeight = window.innerWidth / aspectRatio;
 
-    // Calculate viewport size to maintain 16:9 aspect ratio within the canvas
-    let aspectRatio = 16 / 9;
-    let viewportWidth, viewportHeight;
+  if (newHeight > window.innerHeight) {
+      newHeight = window.innerHeight;
+      newWidth = window.innerHeight * aspectRatio;
+  }
 
-    if (canvas.width / canvas.height < aspectRatio) {
-        // Canvas is taller than the desired aspect ratio
-        viewportWidth = canvas.width;
-        viewportHeight = canvas.width / aspectRatio;
-    } else {
-        // Canvas is wider than the desired aspect ratio
-        viewportWidth = canvas.height * aspectRatio;
-        viewportHeight = canvas.height;
-    }
+  // Set canvas dimensions to match the new calculated dimensions
+  const canvas = document.getElementById('gameCanvas');
+  canvas.style.width = `${newWidth}px`;
+  canvas.style.height = `${newHeight}px`;
+  canvas.width = newWidth;
+  canvas.height = newHeight;
 
-    // Update global viewport object
-    viewport.width = viewportWidth;
-    viewport.height = viewportHeight;
-    // Adjust viewport x and y to center the view if necessary
-    viewport.x = (canvas.width - viewportWidth) / 2;
-    viewport.y = (canvas.height - viewportHeight) / 2;
+  // Update viewport to match new canvas size, maintaining the game's aspect ratio
+  viewport.width = newWidth;
+  viewport.height = newHeight;
+  // Adjust viewport x and y to ensure the game view is centered
+  viewport.x = Math.max(0, playerX - viewport.width / 2);
+  viewport.y = Math.max(0, playerY - viewport.height / 2);
 
-    // Optionally, re-center or adjust the game view based on new viewport size
-    updateViewport(playerX, playerY);
+  // Re-center or adjust the game view based on the new viewport size
+  updateViewport(playerX, playerY); // Ensure this function is defined to adjust the game's viewport
 }
 
+// Listen for window resize events to adjust the canvas
 window.addEventListener('resize', resizeCanvas);
-resizeCanvas(); // Initial call to fit the viewport
-
+// Call resizeCanvas initially to set up the canvas size
+resizeCanvas();
 
 // Start the game loop
 gameLoop();
+
