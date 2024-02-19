@@ -66,8 +66,8 @@ document
   .getElementById("down")
   .addEventListener("touchend", stopDown, { passive: false });
 
-let playerX = 725; // Starting X position
-let playerY = 825; // Starting Y position
+let playerX = 1105; // Starting X position
+let playerY = 1320; // Starting Y position
 
 function update() {
   const playerSpeed = 5;
@@ -79,17 +79,31 @@ function update() {
   // Keep the player within the map bounds
   playerX = Math.max(0, Math.min(gameMap.width, playerX));
   playerY = Math.max(0, Math.min(gameMap.height, playerY));
-
+  // Calculate logs of where the player is located
+  console.log(playerX, playerY)
   updateViewport(playerX, playerY); // Assuming this function adjusts the viewport
 }
 
+// Load the character image
+const characterImage = new Image();
+characterImage.src = 'codedex-bot-logo.gif'; // Path to your image
+
 function drawCharacter() {
-  ctx.fillStyle = "red"; // Example character color
   let viewportX = playerX - viewport.x;
   let viewportY = playerY - viewport.y;
-  let charSquare = 25.6; // Main character size
-  ctx.fillRect(viewportX, viewportY, charSquare, charSquare); // Example character size
+  let charSquare = 50; // You can adjust this size if needed
+
+  // Ensure the image is loaded before drawing
+  if (characterImage.complete) {
+    ctx.drawImage(characterImage, viewportX, viewportY, charSquare, charSquare);
+  } else {
+    // Optionally, draw a placeholder or retry until the image is loaded
+    characterImage.onload = () => {
+      ctx.drawImage(characterImage, viewportX, viewportY, charSquare, charSquare);
+    };
+  }
 }
+
 
 function gameLoop() {
   requestAnimationFrame(gameLoop);

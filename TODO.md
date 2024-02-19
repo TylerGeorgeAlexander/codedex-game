@@ -14,3 +14,5 @@ Look into how to force phone or smaller resolution screens into rotation or land
 
 Don't forget about photopea
 
+1105 x 1320 = start background island
+
